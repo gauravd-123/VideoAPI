@@ -21,7 +21,7 @@ namespace VideoAPI.Controllers
             //loginDL = dl;
         }
 
-        [HttpGet]
+        [HttpGet("healthCheck")]
         public string healthCheck()
         {
             return "Working Fine";
