@@ -4,14 +4,14 @@ using VideoAPI.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var origin = builder.Configuration.GetSection("AllowOrigin").Get<string>();
-
+//var origin = builder.Configuration.GetSection("AllowOrigin").Get<string>();
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
 
 builder.Services.AddCors(options =>
 {
 	options.AddPolicy("AllowSpecificOrigins", policy =>
 	{
-		policy.WithOrigins(origin).AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+		policy.WithOrigins(allowedOrigins).AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
 	});
 });
 
