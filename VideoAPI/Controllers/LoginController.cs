@@ -35,5 +35,23 @@ namespace VideoAPI.Controllers
             login = await bl.getUser(userId);
             return Ok(login);
         }
-    }
+
+        [HttpPost("userLogin")]
+        public async Task<LoginRs> ValidateUser(Login loginRq)
+        {
+            LoginRs rs = new LoginRs();
+			LoginBL bl = new LoginBL(_config);
+            rs = await bl.userValidate(loginRq);
+			return rs;
+        }
+
+		[HttpPost("createUser")]
+		public async Task<DBRS> CreateUser(Login loginRq)
+		{
+            DBRS Dbrs = new DBRS();
+			LoginBL bl = new LoginBL(_config);
+			Dbrs = await bl.createUser(loginRq);
+			return Dbrs;
+		}
+	}
 }

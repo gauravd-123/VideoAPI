@@ -23,5 +23,31 @@ namespace VideoAPI.BL
             return login;
         }
 
-    }
+		public async Task<LoginRs> userValidate(Login loginRq)
+		{
+			LoginRs login = new LoginRs();
+			LoginDL dl = new LoginDL(_config);
+			login = await dl.validate(loginRq);
+			return login;
+		}
+
+        public async Task<DBRS> createUser(Login rq)
+        {
+            LoginDL dl = new LoginDL(_config);
+            DBRS Dbrs = new DBRS();
+            //Dbrs = await dl.createUser(rq);
+            //int userId = await dl.createUserId();
+            bool userExists = await dl.checkUserAlreadyExists(rq.userName, rq.password);
+            if (!userExists)
+            {
+				Dbrs = await dl.createUser(rq);
+			} else
+            {
+                Dbrs.status = "Failure";
+                Dbrs.message = "User already exists";
+            }
+			return Dbrs;
+        }
+
+	}
 }
