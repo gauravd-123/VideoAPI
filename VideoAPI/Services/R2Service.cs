@@ -205,6 +205,15 @@ namespace VideoAPI.Services
 			return maxLen;
 		}
 
+		public async Task<R2Urls> GetAvailVideos()
+		{
+			R2Urls list = new R2Urls();
+			R2DL dl = new R2DL();
+			//string word = nameToSearch(searchTerm);
+			list = await dl.availableVideoFromDB();
+			return list;
+
+		}
 
 	}
 }

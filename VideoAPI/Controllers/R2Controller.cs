@@ -62,6 +62,14 @@ namespace VideoAPI.Controllers
 			return obj;
 		}
 
+		[HttpGet("GetAvailble")]
+		public async Task<R2Urls> GetAvailbleVideos()
+		{
+			R2Urls obj = await _r2Service.GetAvailVideos();
+			return obj;
+		}
+		/////////////////////////////////////////////////////////////////////////////////////////
+
 		[HttpPost("initiate")]
 		public async Task<IActionResult> InitiateMultipartUpload(string objectName)
 		{

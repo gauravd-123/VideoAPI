@@ -41,5 +41,32 @@ namespace VideoAPI.DL
 			return urls;
 
 		}
+		public async Task<R2Urls> availableVideoFromDB()
+        {
+            R2Urls urls = new R2Urls();
+            try
+            {
+				int limit = 10;
+				using (IDbConnection conn = new NpgsqlConnection(connString))
+				{
+					string query = "SELECT FileName, poster FROM \"videometadata_master\" limit :limit";
+					conn.Open();
+					var param = new
+					{
+						limit = limit,
+					};
+					var res = await conn.QueryAsync<R2Data>(query, param);
+					urls.urlList = res.ToList();
+					urls.status = "Success";
+				}
+			}
+			catch(Exception ex)
+			{
+				
+			}
+            
+			return urls;
+
+		}
 	}
 }
