@@ -193,8 +193,8 @@ namespace VideoAPI.Services
 
 		private static string nameToSearch(string text)
 		{
-			string txt = text.Replace("'", "");
-			string[] str = txt.Split(' ');
+			//string txt = text.Replace("'", "");
+			string[] str = text.Split(' ');
 			string maxLen = "";
 			foreach(string word in str)
 			{
