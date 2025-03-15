@@ -16,6 +16,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddControllers();
+builder.Services.AddHttpClient();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -26,6 +27,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddTransient<R2Service>();
 //builder.Services.AddSingleton<IConfiguration>();
+
 
 var app = builder.Build();
 
